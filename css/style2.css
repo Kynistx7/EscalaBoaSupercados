@@ -67,6 +67,8 @@ body {
 .welcome-text {
     text-align: left; /* Alinha o texto à esquerda */
     color: white
+    font-size: 1.2em; /* Tamanho da fonte do texto */
+    max-width: 500px; /* Limita a largura do texto */
 }
 
 .welcome img {

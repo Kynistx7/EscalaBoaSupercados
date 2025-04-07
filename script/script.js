@@ -167,15 +167,10 @@ cargos.forEach(cargo => {
                 }
             });
 
-            slot.addEventListener('click', function() {
-                if (this.classList.contains('slot-filled')) {
-                    this.textContent = this.dataset.originalTime; // Restaura texto original
-                    this.classList.remove('slot-filled');
-                    delete this.dataset.assignedName; // **NOVO: Remove o nome do dataset**
-
-                    // **IMPORTANTE:** Reaplicar filtros após limpar
-                     // se o slot vazio deve ficar oculto pelo filtro de nome
-                    aplicarTodosFiltros();
+            slot.addEventListener('click', function () {
+                if (confirm("Deseja realmente remover este slot?")) {
+                    this.remove(); // Remove o slot do DOM
+                    console.log("Slot removido.");
                 }
             });
 
@@ -307,49 +302,28 @@ btnDownload.addEventListener("click", () => {
         html2canvas(quadroParaPdf, options).then(canvas => {
             console.log("Canvas gerado a partir do HTML.");
             const imgData = canvas.toDataURL('image/png');
-            const pdfWidth = 210; // A4 width in mm
-            const pdfHeight = 297; // A4 height in mm
             const margin = 10;
             const imgWidth = canvas.width;
             const imgHeight = canvas.height;
-            const effectivePdfWidth = pdfWidth - 2 * margin;
-            const ratio = effectivePdfWidth / imgWidth;
-            const scaledImgHeight = imgHeight * ratio;
-            const effectivePdfHeight = pdfHeight - 2 * margin;
-            const pdf = new jsPDF('p', 'mm', 'a4'); // 'p' for portrait
-            let position = margin;
 
-             // --- Lógica de Paginação Simples (se necessário) ---
-             let heightLeft = scaledImgHeight;
-             if (heightLeft <= effectivePdfHeight) {
-                 pdf.addImage(imgData, 'PNG', margin, position, effectivePdfWidth, scaledImgHeight);
-             } else {
-                console.log("Conteúdo maior que uma página, aplicando paginação...");
-                 // Adiciona a primeira parte da imagem
-                pdf.addImage(imgData, 'PNG', margin, position, effectivePdfWidth, effectivePdfHeight); // Corta na altura da página
-                heightLeft -= effectivePdfHeight; // Subtrai altura já adicionada
+            // Usa mm como unidade padrão do jsPDF
+            const pdfWidthMm = 210; // Largura A4 como referência
+            const effectivePdfWidthMm = pdfWidthMm - 2 * margin;
+            const ratio = effectivePdfWidthMm / imgWidth;
+            const scaledImgHeightMm = imgHeight * ratio;
+            const totalPdfHeightMm = scaledImgHeightMm + 2 * margin; // Altura total necessária
 
-                // Adiciona páginas seguintes enquanto houver imagem restante
-                while (heightLeft > 0) {
-                    position = -effectivePdfHeight; // Começa da parte de baixo da imagem na página anterior (negativo)
-                    pdf.addPage();
-                    pdf.addImage(imgData, 'PNG', margin, position, effectivePdfWidth, scaledImgHeight); // Adiciona a imagem inteira de novo, cortada pela posição
-                    heightLeft -= effectivePdfHeight;
-                 }
-                 // Nota: Esta paginação com html2canvas pode cortar elementos no meio.
-                 // Uma solução ideal exigiria gerar o PDF programaticamente.
-             }
+            // Cria PDF com tamanho customizado [largura, altura]
+            const pdf = new jsPDF('p', 'mm', [pdfWidthMm, totalPdfHeightMm]);
 
-
-            console.log("Imagem(s) adicionada(s) ao PDF.");
-            pdf.save('escala_de_trabalho.pdf');
-            console.log("PDF salvo.");
+            pdf.addImage(imgData, 'PNG', margin, margin, effectivePdfWidthMm, scaledImgHeightMm);
+            pdf.save('escala_de_trabalho_pagina_unica.pdf');
 
         }).catch(error => {
             console.error("Erro ao gerar o PDF:", error);
             alert("Ocorreu um erro ao gerar o PDF. Verifique o console para mais detalhes.");
         }).finally(() => {
-             // Restaura os filtros para os valores originais INDEPENDENTEMENTE de sucesso ou erro
+            // Restaura os filtros para os valores originais INDEPENDENTEMENTE de sucesso ou erro
             console.log("Restaurando filtros...");
             filtroCargoSelect.value = currentCargoFilter;
             filtroDiaSelect.value = currentDiaFilter;
