@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Escala de Colaboradores</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" integrity="sha512-qZvrmS2ekKPF2mSznTQsxqPgnpkI4DNTlrdUmTzrDgektczlKNRRhy5X5AAOnx5S09ydFYWWNSfcEqDTTHgtNA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html">
+            <img src="img/boa.png" alt="Logo Empresa" width="100" height="">
+        </a>
+        <div class="nav-links">
+            <button id="btn-toggle-filtros" class="filtro-elemento">Filtros</button> </div>
+    </nav>
+
+    <h1>ESCALA DE COLABORADORES</h1>
+
+    <div id="filtros-container" class="filtros-container oculto">
+        <div class="filtro-item">
+            <label for="filtro-cargo">FILTRAR POR CARGO:</label>
+            <select id="filtro-cargo" class="filtro-elemento"> <option value="todos">Todos</option>
+                <option value="Operadores">Operadores</option>
+                <option value="Empacotadores">Empacotadores</option>
+                <option value="Estagiarios">Estagiários</option>
+                <option value="Operadores de Estacionamento">Operadores de Estacionamento</option>
+                <option value="Senac">Senac</option>
+                 </select>
+        </div>
+
+        <div class="filtro-item">
+            <label for="filtro-dia">FILTRAR POR DIA:</label>
+            <select id="filtro-dia" class="filtro-elemento"> <option value="todos">Todos</option>
+                </select>
+        </div>
+
+        <div class="filtro-item">
+            <label for="filtro-nome">FILTRAR POR NOME:</label>
+            <input type="text" id="filtro-nome" class="filtro-elemento" placeholder="Digite parte do nome..."> <button id="btn-limpar-filtro-nome" class="filtro-elemento">Limpar</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="colaboradores" id="lista-colaboradores">
+            </div>
+        <div class="quadro" id="quadro-horarios">
+            </div>
+    </div>
+
+    <div class="button-container">
+        <button id="btn-download-pdf" class="filtro-elemento">Baixar Escala em PDF</button> </div>
+
+    <script src="script/script.js"></script>
+</body>
+</html>

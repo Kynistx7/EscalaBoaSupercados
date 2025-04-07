@@ -1,0 +1,320 @@
+/* Importa a fonte 'Roboto' do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Reset básico e globais */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
+  color: #e0e0e0;
+  line-height: 1.6;
+}
+
+h1 {
+  text-align: center;
+  padding: 30px 20px 20px;
+  color: #f6f7f8;
+  font-weight: 700;
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.3em;
+  margin-bottom: 15px;
+  color: #f6f7f7;
+  border-bottom: 2px solid #444;
+  font-weight: 500;
+  padding-bottom: 5px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  padding: 0 20px 30px;
+}
+
+.colaboradores {
+  flex: 0 0 250px;
+  background-color: #2c2c2c;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  height: fit-content;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.colaborador {
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  background-color: #4a90e2;
+  color: white;
+  cursor: move;
+  border-radius: 6px;
+  font-size: 0.95em;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  border-left: 6px solid #f39c12;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.colaborador:hover {
+  background-color: #357ABD;
+  transform: scale(1.03);
+}
+
+.quadro {
+  flex: 1;
+  min-width: 300px;
+}
+
+.cargo-section {
+  margin-bottom: 30px;
+  background-color: #2c2c2c;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.dias-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.dia-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+}
+
+.dia-title {
+  flex: 0 0 70px;
+  font-weight: 600;
+  text-align: right;
+  padding-top: 8px;
+  font-size: 0.9em;
+  color: #aaa;
+}
+
+.horarios-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.slot {
+  flex: 1 1 120px;
+  min-height: 50px;
+  border: 1px dashed #aaa;
+  background-color: #1f1f1f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85em;
+  color: #999;
+  border-radius: 6px;
+  padding: 5px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.slot:hover {
+  border-color: #4a90e2;
+  background-color: #292929;
+}
+
+.slot.slot-filled {
+  background-color: #d1f5d3;
+  border-color: #81c784;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#btn-download-pdf {
+  padding: 12px 25px;
+  font-size: 1em;
+  font-weight: 600;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.2s ease;
+}
+
+#btn-download-pdf:hover {
+  background: linear-gradient(135deg, #229954, #27ae60);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.25);
+}
+
+#btn-download-pdf:active {
+  background: #1e8449;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.top-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* --- General Filter Container --- */
+.filtro-item {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* Slightly increased gap */
+  /* Subtle gradient background for depth */
+  background: linear-gradient(145deg, #333, #1a1a1a);
+  padding: 25px; /* More padding */
+  border-radius: 12px; /* Smoother corners */
+  margin: 30px auto;
+  width: 90%;
+  max-width: 800px;
+  /* Enhanced shadow for a lifting effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  border: 1px solid #444; /* Optional subtle border */
+  transition: box-shadow 0.3s ease; /* Smooth transition for shadow */
+}
+
+/* Add a subtle hover effect to the container itself */
+.filtro-item:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+}
+
+#filtro-nome,
+#bnt-limpar-filtrar-nome,
+#filtro-dia,
+#filtro-cargo {
+  padding: 10px 15px; /* Adjusted padding */
+  font-size: 1em;
+  border-radius: 8px; /* Slightly rounder */
+  border: 1px solid #555; /* Border color that fits the dark theme */
+  background-color: #f0f0f0; /* Light background for contrast */
+  color: #222; /* Dark text */
+  outline: none; /* Remove default browser outline */
+  /* Smooth transition for various properties */
+  transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Subtle inner shadow */
+}
+
+
+
+/* Hover state for Input/Select Fields */
+#filtro-nome:hover,
+#filtro-dia:hover,
+#filtro-cargo:hover {
+  border-color: #888; /* Lighter border on hover */
+  background-color: #fff; /* Whiter background on hover */
+}
+
+/* Focus state for Input/Select Fields */
+#filtro-nome:focus,
+#filtro-dia:focus,
+#filtro-cargo:focus {
+  border-color: #007bff; /* Highlight color */
+  background-color: #fff;
+  /* Glow effect on focus */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1), 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* --- Specific Styles for the Button --- */
+#bnt-limpar-filtrar-nome {
+  background-color: #007bff; /* Primary button blue */
+  color: #ffffff; /* White text */
+  border-color: #0056b3; /* Slightly darker border */
+  font-weight: bold;
+  cursor: pointer; /* Indicate it's clickable */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Button shadow */
+}
+
+
+#bnt-limpar-filtrar-nome:hover {
+  background-color: #0056b3; 
+  border-color: #004085;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+  transform: translateY(-2px); 
+}
+
+#bnt-limpar-filtrar-nome:active {
+  background-color: #004085; /* Even darker when pressed */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15); /* Pressed effect */
+  transform: translateY(0); /* Reset lift */
+}
+/* Navbar */
+.navbar {
+  background-color: #2c2c2c;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Oculta o contêiner de filtros inicialmente */
+.oculto {
+    display: none;
+}
+
+/* Exibe o contêiner de filtros quando visível */
+.visivel {
+    display: block;
+}
+
+/* Estilo para o botão de filtros no navbar */
+#btn-toggle-filtros {
+    padding: 8px 12px;
+    font-size: 1em;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    background-color: #4a90e2;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#btn-toggle-filtros:hover {
+    background-color: #357ABD;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+  .colaboradores {
+    width: 100%;
+  }
+  .quadro {
+    width: 100%;
+  }
+  .dia-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dia-title {
+    text-align: left;
+  }
+}

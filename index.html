@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Bem-vindo à Escala</title>
+    <link rel="stylesheet" href="css/style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <img src="img/boa.png" alt="Logo" width="100" height="">
+        <div class="nav-links">
+        </div>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <div class="welcome">
+        <div class="welcome-content">
+            <img src="img/depositphotos_195362858-stock-illustration-office-teamwork-or-business-meeting-removebg-preview.png" alt="typewriter" width="350" height="300">
+            <div class="welcome-text">
+                <h1>Bem-vindo ao Sistema de Escala</h1>
+                <p>Organize os horários dos colaboradores de forma simples e prática.</p>
+                <button onclick="window.location.href='login.html'">Realize seu login</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" required>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Cadastro -->
+    <div id="cadastro-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Cadastro</h2>
+            <form id="cadastro-form">
+                <label for="new-username">Usuário:</label>
+                <input type="text" id="new-username" required>
+                <label for="new-password">Senha:</label>
+                <input type="password" id="new-password" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+                <button type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script-inicial.js"></script>
+</body>
+</html>
