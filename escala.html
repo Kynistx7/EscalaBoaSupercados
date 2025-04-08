@@ -38,8 +38,52 @@
 
         <div class="filtro-item">
             <label for="filtro-nome">FILTRAR POR NOME:</label>
-            <input type="text" id="filtro-nome" class="filtro-elemento" placeholder="Digite parte do nome..."> <button id="btn-limpar-filtro-nome" class="filtro-elemento">Limpar</button>
+            <div class="input-button-group">
+                <input type="text" id="filtro-nome" class="filtro-elemento" placeholder="Digite parte do nome...">
+                <button id="btn-limpar-filtro-nome" class="filtro-elemento">Limpar</button>
+            </div>
         </div>
+    </div>
+    <div class="adicionar-slot-container oculto" id="adicionar-slot-container">
+        <h3>Novo horario</h3>
+        <form id="form-adicionar-slot">
+            <label for="cargo-slot">Cargo:</label>
+            <select id="cargo-slot" required>
+                <option value="">Selecione um cargo</option>
+                <option value="Operadores">Operadores</option>
+                <option value="Empacotadores">Empacotadores</option>
+                <option value="Estagiarios">Estagiários</option>
+                <option value="Operadores de Estacionamento">Operadores de Estacionamento</option>
+                <option value="Senac">Senac</option>
+            </select>
+
+            <label for="dia-slot">Dia:</label>
+            <select id="dia-slot" required>
+                <option value="">Selecione um dia</option>
+                <option value="Seg">Segunda</option>
+                <option value="Ter">Terça</option>
+                <option value="Qua">Quarta</option>
+                <option value="Qui">Quinta</option>
+                <option value="Sex">Sexta</option>
+                <option value="Sab">Sábado</option>
+                <option value="Dom">Domingo</option>
+            </select>
+
+            <label for="horario-slot">Horário:</label>
+            <input type="time" id="horario-slot" required>
+
+            <button type="submit">Adicionar Horario</button>
+        </form>
+    </div>
+
+    <!-- Botão para alternar a visibilidade -->
+    <div class="button-container">
+        <button id="btn-toggle-slot-form">Adicionar Horario</button>
+    </div>
+
+    <div class="color-picker-container">
+        <label for="color-picker">Escolha uma cor:</label>
+        <input type="color" id="color-picker" value="#ffffff">
     </div>
 
     <div class="container">
@@ -48,6 +92,8 @@
         <div class="quadro" id="quadro-horarios">
             </div>
     </div>
+
+    
 
     <div class="button-container">
         <button id="btn-download-pdf" class="filtro-elemento">Baixar Escala em PDF</button> </div>

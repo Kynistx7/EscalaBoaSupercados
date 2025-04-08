@@ -204,7 +204,6 @@ h2 {
 .filtro-item:hover {
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
 }
-
 #filtro-nome,
 #bnt-limpar-filtrar-nome,
 #filtro-dia,
@@ -221,7 +220,12 @@ h2 {
   box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Subtle inner shadow */
 }
 
-
+/* --- Specific Styles for Input/Select Fields --- */
+#filtro-nome,
+#filtro-dia,
+#filtro-cargo {
+  /* Add specific styles if needed, otherwise inherits common styles */
+}
 
 /* Hover state for Input/Select Fields */
 #filtro-nome:hover,
@@ -299,6 +303,159 @@ h2 {
 #btn-toggle-filtros:hover {
     background-color: #357ABD;
 }
+
+.color-picker-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+#color-picker {
+    margin-left: 10px;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease;
+}
+
+#color-picker:hover {
+    transform: scale(1.1);
+}
+
+Claro, aqui está o CSS aprimorado novamente, com tema escuro e elementos de formulário mais estilizados:
+
+```css
+/* --- Opcional: Aplicar uma fonte base mais moderna --- */
+body { /* Ou aplique ao .adicionar-slot-container se preferir mais específico */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Container Principal do Formulário --- */
+.adicionar-slot-container {
+    margin: 30px auto; /* Aumenta a margem */
+    padding: 25px 30px; /* Aumenta o padding */
+    /* Fundo escuro com gradiente sutil */
+    background: linear-gradient(145deg, #3a3a3a, #282828);
+    /* Borda sutil para o tema escuro */
+    border: 1px solid #555;
+    border-radius: 12px; /* Cantos mais arredondados */
+    max-width: 450px; /* Um pouco mais largo */
+    /* Sombra ajustada para tema escuro */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    /* Cor de texto padrão clara para contraste */
+    color: #e0e0e0;
+}
+
+/* --- Título do Formulário --- */
+.adicionar-slot-container h3 {
+    text-align: center;
+    margin-bottom: 25px; /* Mais espaço abaixo do título */
+    color: #ffffff; /* Branco para destaque */
+    font-weight: 600; /* Fonte um pouco mais pesada */
+    letter-spacing: 0.5px; /* Espaçamento leve */
+}
+
+/* --- Labels (Rótulos) do Formulário --- */
+.adicionar-slot-container label {
+    display: block;
+    margin: 15px 0 8px; /* Ajusta margens */
+    font-weight: 500; /* Médio */
+    font-size: 0.95em; /* Tamanho levemente menor */
+    color: #ccc; /* Cinza claro para os labels */
+}
+
+/* --- Estilos Comuns para Inputs e Select --- */
+/* Usando seletores de classe para descendentes (melhor prática) */
+.adicionar-slot-container input[type="text"],
+.adicionar-slot-container input[type="time"], /* Adicione outros tipos de input se usar */
+.adicionar-slot-container input[type="date"],
+.adicionar-slot-container select {
+    width: 100%;
+    padding: 12px 15px; /* Padding interno */
+    margin-bottom: 15px; /* Espaço abaixo */
+    /* Borda que combina com o fundo escuro */
+    border: 1px solid #666;
+    border-radius: 8px; /* Cantos arredondados */
+    /* Fundo claro para legibilidade dentro do campo */
+    background-color: #e9ecef;
+    /* Cor do texto dentro do campo */
+    color: #333;
+    font-size: 1em; /* Tamanho de fonte padrão */
+    box-sizing: border-box; /* Garante que padding/border não aumentem a largura total */
+    /* Transições suaves para foco/hover */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.2s ease;
+    outline: none; /* Remove o contorno padrão do navegador */
+} 
+#btn-toggle-slot-form {
+    background-color: #007bff; /* Cor de fundo azul */
+    color: white; /* Texto branco */
+    border: none; /* Remove borda padrão */
+    border-radius: 8px; /* Cantos arredondados */
+    padding: 10px 15px; /* Espaçamento interno */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    font-size: 1em; /* Tamanho da fonte */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transições suaves */
+}
+
+/* --- Efeito Hover para Inputs e Select --- */
+.adicionar-slot-container input[type="text"]:hover,
+.adicionar-slot-container input[type="time"]:hover,
+.adicionar-slot-container input[type="date"]:hover,
+.adicionar-slot-container select:hover {
+    border-color: #888; /* Borda levemente mais clara no hover */
+}
+
+/* --- Efeito Focus (quando selecionado) para Inputs e Select --- */
+.adicionar-slot-container input[type="text"]:focus,
+.adicionar-slot-container input[type="time"]:focus,
+.adicionar-slot-container input[type="date"]:focus,
+.adicionar-slot-container select:focus {
+    /* Cor de destaque (azul vibrante) */
+    border-color: #00aeff;
+    /* Efeito de brilho sutil */
+    box-shadow: 0 0 0 4px rgba(0, 174, 255, 0.25);
+    background-color: #fff; /* Fundo fica branco puro no foco */
+}
+
+/* --- Estilo do Botão --- */
+.adicionar-slot-container button {
+    width: 100%;
+    padding: 12px 15px;
+    margin-top: 10px; /* Espaço acima do botão */
+    margin-bottom: 10px; /* Espaço abaixo */
+    border-radius: 8px; /* Consistente com inputs */
+    font-weight: bold;
+    font-size: 1.05em; /* Levemente maior */
+    cursor: pointer;
+    border: none; /* Remove borda padrão */
+    /* Cor primária para tema escuro (azul) */
+    background-color: #008ecc;
+    color: white;
+    box-sizing: border-box;
+    /* Transições suaves */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    /* Sombra leve no botão */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    outline: none; /* Remove contorno */
+}
+
+/* --- Efeito Hover do Botão --- */
+.adicionar-slot-container button:hover {
+    background-color: #0073ab; /* Azul mais escuro */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.35); /* Sombra mais pronunciada */
+    transform: translateY(-2px); /* Efeito de levantar sutil */
+}
+
+/* --- Efeito Active (quando clicado) do Botão --- */
+.adicionar-slot-container button:active {
+    background-color: #005c8a; /* Azul ainda mais escuro */
+    transform: translateY(0); /* Volta à posição original */
+    /* Efeito de "pressionado" */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+```
 
 @media (max-width: 768px) {
   .container {

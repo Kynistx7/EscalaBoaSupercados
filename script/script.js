@@ -22,14 +22,12 @@ const colaboradores = [
     { nome: "FOLGA", cargo: "FOLGA" },
 ];
 const dias = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
-const horarios = ["06:50", "06:50", "07:00", "08:00", "09:00", "10:00", "14:00", "14:00", "14:00", "14:00", "14:00", "14:00", "16:15", "16:15", "16:15"];
-
 
 // Mapeamento de horários por cargo
 const horariosPorCargo = {
-    "Operadores": ["06:50", "06:50", "10:00", "12:00", "14:00", "14:00", "14:00","14:00", "14:00", "14:00"],
+    "Operadores": ["06:50", "06:50", "14:00", "14:00", "14:00"],
     "Empacotadores": ["07:00","09:00", "10:00","12:00", "14:00"],
-    "Estagiarios": ["07:00", "09:00", "09:00", "09:00","09:00", "10:00", "16:15", "16:15", "16:15", "16:15",],
+    "Estagiarios": ["07:00", "09:00", "09:00", "16:15", "16:15",,],
     "Operador de Estacionamento": ["10:00", "14:00"],
     "Senac": ["09:00", "14:00","14:00"],
     "FOLGA": [] // FOLGA não tem horários específicos
@@ -57,6 +55,9 @@ btnToggleFiltros.addEventListener("click", () => {
 
 // Garante que jsPDF está disponível globalmente
 const { jsPDF } = window.jspdf;
+
+// Seleciona o seletor de cores
+const colorPicker = document.getElementById("color-picker");
 
 // --- Preenche a lista de colaboradores ---
 colaboradores.forEach(colaborador => {
@@ -168,6 +169,13 @@ cargos.forEach(cargo => {
             });
 
             slot.addEventListener('click', function () {
+                const selectedColor = colorPicker.value; // Obtém a cor selecionada
+                this.style.backgroundColor = selectedColor; // Aplica a cor ao slot
+                this.style.color = "#fff"; // Ajusta a cor do texto para contraste
+                console.log(`Slot pintado com a cor: ${selectedColor}`);
+            });
+
+            slot.addEventListener('dblclick', function () {
                 if (confirm("Deseja realmente remover este slot?")) {
                     this.remove(); // Remove o slot do DOM
                     console.log("Slot removido.");
@@ -379,5 +387,102 @@ document.addEventListener('DOMContentLoaded', () => {
     preencherFiltroDeNomes(); // Preenche o filtro de nomes
     aplicarTodosFiltros(); // Aplica os filtros iniciais
     atualizarListaColaboradores(); // Atualiza a lista de colaboradores
+});
+
+// Seleciona o formulário e os campos de entrada
+const formAdicionarSlot = document.getElementById("form-adicionar-slot");
+const cargoSlotInput = document.getElementById("cargo-slot");
+const diaSlotInput = document.getElementById("dia-slot");
+const horarioSlotInput = document.getElementById("horario-slot");
+
+// Adiciona um evento de submissão ao formulário
+formAdicionarSlot.addEventListener("submit", (e) => {
+    e.preventDefault(); // Evita o recarregamento da página
+
+    const cargo = cargoSlotInput.value;
+    const dia = diaSlotInput.value;
+    const horario = horarioSlotInput.value;
+
+    if (cargo && dia && horario) {
+        // Encontra a seção do dia correspondente
+        const diaDiv = document.querySelector(`.dia-item[data-dia-filter="${dia}"]`);
+        if (!diaDiv) {
+            alert("Erro: O dia selecionado não foi encontrado.");
+            return;
+        }
+
+        // Cria o novo slot
+        const slot = document.createElement("div");
+        slot.className = "slot";
+        slot.dataset.cargo = cargo; // Associa o cargo ao slot
+        slot.dataset.horario = horario; // Associa o horário ao slot
+        slot.textContent = `${horario}`; // Exibe o horário no slot
+
+        // Adiciona eventos ao slot
+        slot.addEventListener('click', function () {
+            const selectedColor = colorPicker.value; // Obtém a cor selecionada
+            this.style.backgroundColor = selectedColor; // Aplica a cor ao slot
+            this.style.color = "#fff"; // Ajusta a cor do texto para contraste
+            console.log(`Slot pintado com a cor: ${selectedColor}`);
+        });
+
+        slot.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = "move";
+        });
+
+        slot.addEventListener("drop", (e) => {
+            e.preventDefault();
+            const nome = e.dataTransfer.getData("text/plain");
+            const cargoDrop = e.dataTransfer.getData("cargo");
+            const slotCargo = slot.dataset.cargo;
+
+            if (cargoDrop === "FOLGA" || cargoDrop === slotCargo) {
+                if (slot.classList.contains('slot-filled')) {
+                    slot.textContent = slot.dataset.horario; // Limpa visualmente
+                    delete slot.dataset.assignedName; // Remove o nome antigo do dataset
+                    slot.classList.remove('slot-filled');
+                }
+
+                slot.textContent = `${slot.dataset.horario}: ${nome}`;
+                slot.classList.add("slot-filled");
+                slot.dataset.assignedName = nome; // Armazena o nome atribuído
+            } else {
+                alert(`Erro: ${nome} (${cargoDrop}) não pode ser escalado em ${slotCargo}.`);
+            }
+        });
+
+        slot.addEventListener('dblclick', function () {
+            if (confirm("Deseja realmente remover este slot?")) {
+                this.remove(); // Remove o slot do DOM
+                console.log("Slot removido.");
+            }
+        });
+
+        // Adiciona o slot ao dia correspondente
+        const horariosGrid = diaDiv.querySelector(".horarios-grid");
+        horariosGrid.appendChild(slot);
+
+        // Limpa os campos do formulário
+        cargoSlotInput.value = "";
+        diaSlotInput.value = "";
+        horarioSlotInput.value = "";
+
+        alert("Slot adicionado com sucesso!");
+    } else {
+        alert("Por favor, preencha todos os campos.");
+    }
+});
+
+// Seleciona o botão e o formulário
+const btnToggleSlotForm = document.getElementById("btn-toggle-slot-form");
+const adicionarSlotContainer = document.getElementById("adicionar-slot-container");
+
+// Adiciona um evento de clique para alternar a visibilidade
+btnToggleSlotForm.addEventListener("click", () => {
+    adicionarSlotContainer.classList.toggle("oculto"); // Alterna a classe 'oculto'
+    btnToggleSlotForm.textContent = adicionarSlotContainer.classList.contains("oculto")
+        ? "Adicionar Novo Slot"
+        : "Esconder Formulário";
 });
 
